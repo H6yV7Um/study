@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:pylon="http://ele.me/schema/pylon"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://ele.me/schema/pylon
+        http://ele.me/schema/pylon/spring-pylon.xsd">
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+	<!-- 进行本地单元测试时可以选择直连ip与注册中心两种方式 -->
+	<!-- 1. ip直连需要将huskarUrl、huskarToken并配置正确的group与providerList信息 -->
+	<!-- 2. 注册中心方式需要将huskarUrl、huskarToken配置为alpha或alta相应的信息并配置对应服务group信息 -->
+    <pylon:common huskarUrl="${ele.soa.huskar.url}"
+                  huskarToken="${ele.soa.huskar.token}"
+                  traceUrl="${ele.soa.trace.url}"
+                  metricUrl="${ele.statsd.url.sh}"/>
+    <!-- threadPoolSize客户端线程池大小，timeoutInMillis客户端超时设置建议小于3秒，providerList本地调试直连ip地址时使用该配置-->              
+    <pylon:client name="lpd_datacenter_heye" group="${crete.soa.base.group}" protocol="json" threadPoolSize="100"
+                  timeoutInMillis="3000" providerList="127.0.0.1:10001">
+        <pylon:interface class="com.ele.me.api.service.ToDoService"/>
+    </pylon:client>
+    
+    <!-- export service -->
+    <!--  <pylon:server
+        name="your appId"
+        protocol="json"
+        group="${server.group}"
+        port="${server.port}"
+        threadPoolSize="${server.threadPoolSize}"
+        bufferQueueSize="${server.bufferQueueSize}">
+        <pylon:service class="me.ele.pylon.service.AService"/>
+    </pylon:server>-->
+    
+</beans>

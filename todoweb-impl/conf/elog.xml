@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<property name="appid" value="todoweb"/>
+    <appender name="FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder/>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter> 
+        <!-- file是可不填，默认名字就是access.log -->
+        <file>/Users/zengzhimin/Documents/log/${appid}/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/Users/zengzhimin/Documents/log/${appid}/access.log.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <!-- 异步appender，在输出日志比较多，并且有性能需求时，必须使用 -->
+    <appender name="ASYNC" class="me.ele.elog.appender.AsyncAppender">
+        <!-- logback的设计是异步appender类似其他的appender的wrap，所以只能ref一个，elog sdk目前可以添加多个  -->
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <root>
+        <appender-ref ref="ASYNC" />
+    </root>
+</configuration>
