@@ -77,7 +77,12 @@ public class lambdaTest {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
+
+
+        //calendar.add(Calendar.DATE, -1);
+
         calendar.add(Calendar.DATE, 3);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(sdf.format(calendar.getTime()));
     }
