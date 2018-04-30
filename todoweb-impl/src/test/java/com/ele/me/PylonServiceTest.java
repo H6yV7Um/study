@@ -28,13 +28,6 @@ import me.ele.crete.standard.product.service.IStandardProductService;
 @ContextConfiguration(locations = {"classpath:pylon.xml"})
 public class PylonServiceTest {
 	
-	@Autowired
-	private IStandardProductService iStandardProductService;
-	
-	@Test
-	public void pylonInvokeTest() throws SQLException{
-		List<StandardProductAbstractDto> productList = iStandardProductService.getStandardProductAll();
-		assertNotNull(productList);
-	}
+
 	
 }

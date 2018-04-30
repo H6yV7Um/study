@@ -20,7 +20,8 @@
         <property name="locations">
             <list>
                 <value>classpath:soa.properties</value>
-                <!--<value>classpath:redis.properties</value>-->
+                <value>classpath:redis.properties</value>
+                <value>classpath:spring-mq.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8"/>
@@ -29,6 +30,6 @@
     </bean>
 
     <import resource="soa.xml"/>
-    <!--<import resource="redis.xml"/>-->
+    <import resource="redis.xml"/>
     <import resource="classpath*:spring-dal.xml"/>
 </beans>

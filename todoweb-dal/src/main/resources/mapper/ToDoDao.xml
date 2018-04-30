@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ele.me.dal.dao.ToDoDao">
+    <select id="queryAll" resultType="com.ele.me.dal.entity.ToDo">
+        SELECT
+        id, content, created_at, updated_at
+        FROM
+        todo_list
+        ORDER BY
+        id DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+    <insert id="insert" parameterType="com.ele.me.dal.entity.ToDo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        todo_list(id,content)
+        VALUES
+        (#{id},#{content})
+    </insert>
+</mapper>

@@ -16,20 +16,20 @@
                   traceUrl="${ele.soa.trace.url}"
                   metricUrl="${ele.statsd.url.sh}"/>
     <!-- threadPoolSize客户端线程池大小，timeoutInMillis客户端超时设置建议小于3秒，providerList本地调试直连ip地址时使用该配置-->              
-    <pylon:client name="lpd_datacenter_heye" group="${crete.soa.base.group}" protocol="json" threadPoolSize="100"
-                  timeoutInMillis="3000" providerList="127.0.0.1:10001">
-        <pylon:interface class="com.ele.me.api.service.ToDoService"/>
-    </pylon:client>
+    <!--<pylon:client name="crete.soa.base" group="${crete.soa.base.group}" protocol="json" threadPoolSize="100"-->
+                  <!--timeoutInMillis="3000" providerList="192.168.105.127:10020">-->
+        <!--<pylon:interface class="me.ele.crete.standard.product.service.IStandardProductService"/>-->
+    <!--</pylon:client>-->
     
     <!-- export service -->
-    <!--  <pylon:server
-        name="your appId"
+      <pylon:server
+        name="${appId}"
         protocol="json"
-        group="${server.group}"
-        port="${server.port}"
-        threadPoolSize="${server.threadPoolSize}"
-        bufferQueueSize="${server.bufferQueueSize}">
-        <pylon:service class="me.ele.pylon.service.AService"/>
-    </pylon:server>-->
+        group="${soa.group}"
+        port="${app.port}"
+        threadPoolSize="${thread.poolsize}"
+        bufferQueueSize="${thread.poolsize}">
+        <pylon:service class="com.ele.me.api.service.ToDoService"/>
+    </pylon:server>
     
 </beans>
