@@ -2,7 +2,11 @@ package com.ele.me;
 
 import com.ele.me.api.dto.Person;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListTest {
 
@@ -19,14 +23,21 @@ public class ListTest {
         Map<String,List<Person>> groupMap = personList.stream().collect(Collectors.groupingBy(Person::getLastName));
         groupMap.forEach((key,val) ->{System.out.println(groupMap.get(key));});
         //System.out.println(groupMap);*/
-        int a = 5;
-        if(a>1){
-            System.out.println(1);
-        }else if( a>2){
-            System.out.println(2);
-        }
+        List<String> lines = Arrays.asList("spring", "node", "mkyong");
 
 
+    /* The equivalent example in Java 8, using stream.filter() to
+  filter a list, and collect() to convert a stream.
+   */
+        List<String> result1 = lines.stream()  // convert list to stream
+                .filter(line -> {
+                    return "mkyong".equals(line);
+
+                }) // filter the line which equals to "mkyong"
+                .collect(Collectors.toList());  // collect the output and convert streams to a list
+
+
+        System.out.println(result1);
     }
 
     public static void println(List<Person> personLists){
