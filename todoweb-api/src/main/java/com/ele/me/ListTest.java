@@ -31,7 +31,7 @@ public class ListTest {
    */
         List<String> result1 = lines.stream()  // convert list to stream
                 .filter(line -> {
-                    return "mkyong".equals(line);
+                    return !"mkyong".equals(line);
 
                 }) // filter the line which equals to "mkyong"
                 .collect(Collectors.toList());  // collect the output and convert streams to a list
